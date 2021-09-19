@@ -108,3 +108,9 @@ utils/xlsxTransform-*
 /.idea
 
 __localStorage.json
+
+# Vim temp files
+.*.sw[p-z]
+
+# Artifacts
+public/bundle.js
