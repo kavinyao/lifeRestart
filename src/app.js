@@ -246,7 +246,10 @@ class App{
             .find('#next')
             .click(()=>{
                 talentPage.find('#next').hide()
-                this.#totalMax = 20 + this.#life.getTalentAllocationAddition(Array.from(this.#talentSelected).map(({id})=>id));
+                this.#totalMax = Math.max(
+                  20 + this.#life.getTalentAllocationAddition(Array.from(this.#talentSelected).map(({id})=>id)),
+                  100000
+                );
                 this.switch('property');
             })
 
@@ -329,10 +332,10 @@ class App{
             return {group, get, set};
         }
 
-        groups.CHR = getBtnGroups("颜值", 0, 10); // 颜值 charm CHR
-        groups.INT = getBtnGroups("智力", 0, 10); // 智力 intelligence INT
-        groups.STR = getBtnGroups("体质", 0, 10); // 体质 strength STR
-        groups.MNY = getBtnGroups("家境", 0, 10); // 家境 money MNY
+        groups.CHR = getBtnGroups("颜值", 0, 10000); // 颜值 charm CHR
+        groups.INT = getBtnGroups("智力", 0, 10000); // 智力 intelligence INT
+        groups.STR = getBtnGroups("体质", 0, 10000); // 体质 strength STR
+        groups.MNY = getBtnGroups("家境", 0, 10000); // 家境 money MNY
 
         const ul = propertyPage.find('#propertyAllocation');
 
@@ -343,31 +346,22 @@ class App{
         propertyPage
             .find('#random')
             .click(()=>{
-                let t = this.#totalMax;
-                const arr = [10, 10, 10, 10];
-                while(t>0) {
-                    const sub = Math.round(Math.random() * (Math.min(t, 10) - 1)) + 1;
-                    while(true) {
-                        const select = Math.floor(Math.random() * 4) % 4;
-                        if(arr[select] - sub <0) continue;
-                        arr[select] -= sub;
-                        t -= sub;
-                        break;
-                    }
+                let propertyControls = [
+                  groups.CHR,
+                  groups.INT,
+                  groups.STR,
+                  groups.MNY,
+                ];
+
+                for (const propertyControl of propertyControls) {
+                  propertyControl.set(Math.round(Math.random()*10));
                 }
-                groups.CHR.set(10 - arr[0]);
-                groups.INT.set(10 - arr[1]);
-                groups.STR.set(10 - arr[2]);
-                groups.MNY.set(10 - arr[3]);
             });
 
         propertyPage
             .find('#start')
             .click(()=>{
-                if(total() < this.#totalMax) {
-                    this.hint(`你还有${this.#totalMax-total()}属性点没有分配完`);
-                    return;
-                } else if (total() > this.#totalMax) {
+                if (total() > this.#totalMax) {
                     this.hint(`你多使用了${total() - this.#totalMax}属性点`);
                     return;
                 }
