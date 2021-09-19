@@ -126,4 +126,4 @@ function extractMaxTriggers(condition) {
     return age_list.length;
 }
 
-export { checkCondition, extractMaxTriggers };
+export { parseCondition, checkCondition, extractMaxTriggers };

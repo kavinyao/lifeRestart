@@ -1,6 +1,7 @@
 import { summary } from '../src/functions/summary.js'
 import { readFile } from 'fs/promises';
 import Life from '../src/life.js';
+import { parseCondition } from '../src/functions/condition.js';
 
 globalThis.json = async fileName => JSON.parse(await readFile(`data/${fileName}.json`));
 
@@ -140,6 +141,8 @@ class App {
             case 'x':
             case 'exit':
             case '/exit': return this.exit(0);
+
+            case 'parse': return this.parse(...command);
 
             case '?':
             case 'h':
@@ -328,6 +331,12 @@ class App {
             case this.Steps.TALENT: return this.talentSelect(...select);
             case this.Steps.SUMMARY: return this.talentExtend(...select);
         }
+    }
+
+    parse(...input) {
+      let pieces =  parseCondition(input[0]);
+      console.log(pieces);
+      return ' ';
     }
 
     unselect(...select) {
