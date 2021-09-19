@@ -650,7 +650,6 @@ i {
 .grade1b.selected,
 .grade2b.selected,
 .grade3b.selected {
-  box-shadow: #bbb 0px 0px 10px;
   color: #fff;
   overflow: hidden;
 }
@@ -658,16 +657,10 @@ i {
 .grade1b.selected::after,
 .grade2b.selected::after,
 .grade3b.selected::after {
-  content: '';
+  content: '\02705';
   position: absolute;
-  background-color:#000;
   top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  box-shadow: 0 0 10px #000;
-  opacity: 0;
-  animation: blink 3s linear infinite;
+  left: 5px;
 }
 
 @keyframes blink {
