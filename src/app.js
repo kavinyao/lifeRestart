@@ -394,8 +394,7 @@ class App{
             <ul id="lifeProperty" class="lifeProperty"></ul>
             <ul id="lifeTrajectory" class="lifeTrajectory"></ul>
             <div class="btn-area">
-                <button id="auto" class="mainbtn">自动播放</button>
-                <button id="auto2x" class="mainbtn">自动播放2x</button>
+                <button id="auto5x" class="mainbtn">自动播放5x</button>
                 <button id="summary" class="mainbtn">人生总结</button>
                 <button id="domToImage" class="mainbtn">人生回放</button>
             </div>
@@ -429,8 +428,7 @@ class App{
                     $(document).unbind("keydown");
                     this.#isEnd = true;
                     trajectoryPage.find('#summary').show();
-                    trajectoryPage.find('#auto').hide();
-                    trajectoryPage.find('#auto2x').hide();
+                    trajectoryPage.find('#auto5x').hide();
                     // trajectoryPage.find('#domToImage').show();
                 }
                 const property = this.#life.getLastRecord();
@@ -495,11 +493,8 @@ class App{
         };
 
         trajectoryPage
-            .find('#auto')
-            .click(()=>auto(1000));
-        trajectoryPage
-            .find('#auto2x')
-            .click(()=>auto(500));
+            .find('#auto5x')
+            .click(()=>auto(200));
 
         // Summary
         const summaryPage = $(`
@@ -685,8 +680,7 @@ class App{
                     this.#currentPage = 'trajectory';
                     trajectoryPage.find('#lifeTrajectory').empty();
                     trajectoryPage.find('#summary').hide();
-                    trajectoryPage.find('#auto').show();
-                    trajectoryPage.find('#auto2x').show();
+                    trajectoryPage.find('#auto5x').show();
                     this.#isEnd = false;
                 },
                 born: contents => {
