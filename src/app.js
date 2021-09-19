@@ -753,7 +753,7 @@ class App{
         }
 
         $$on('achievement', ({name})=>{
-            this.hint(`解锁成就【${name}】`, 'success');
+            console.log(`解锁成就【${name}】`);
         })
     }
 
