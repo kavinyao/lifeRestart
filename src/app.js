@@ -288,10 +288,10 @@ class App{
         const freshTotal = ()=>{
             propertyPage.find('#total').text(`可用属性点：${this.#totalMax - total()}`);
         }
-        const getBtnGroups = (name, min, max)=>{
+        const getBtnGroups = (name, min, max, init)=>{
             const group = $(`<li>${name}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>`);
             const btnSub = $(`<span class="iconfont propbtn">&#xe6a5;</span>`);
-            const inputBox = $(`<input value="0">`);
+            const inputBox = $(`<input value="${init}">`);
             const btnAdd = $(`<span class="iconfont propbtn">&#xe6a6;</span>`);
             group.append(btnSub);
             group.append(inputBox);
@@ -332,10 +332,10 @@ class App{
             return {group, get, set};
         }
 
-        groups.CHR = getBtnGroups("颜值", 0, 10000); // 颜值 charm CHR
-        groups.INT = getBtnGroups("智力", 0, 10000); // 智力 intelligence INT
-        groups.STR = getBtnGroups("体质", 0, 10000); // 体质 strength STR
-        groups.MNY = getBtnGroups("家境", 0, 10000); // 家境 money MNY
+        groups.CHR = getBtnGroups("颜值", 0, 10000, 10); // 颜值 charm CHR
+        groups.INT = getBtnGroups("智力", 0, 10000, 15); // 智力 intelligence INT
+        groups.STR = getBtnGroups("体质", 0, 10000, 10); // 体质 strength STR
+        groups.MNY = getBtnGroups("家境", 0, 10000, 10); // 家境 money MNY
 
         const ul = propertyPage.find('#propertyAllocation');
 
