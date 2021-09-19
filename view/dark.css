@@ -312,6 +312,9 @@ ul#total li .achievementtitle,
   list-style: none;
   flex: 1;
   padding: 1rem;
+}
+
+.selectlist.overflow {
   overflow: auto;
 }
 
@@ -553,7 +556,6 @@ ul#total li .achievementtitle,
   flex-direction: column;
   border: 1px solid #EEEEEE;
   border-radius: 4px;
-  overflow: scroll;
 }
 
 .judge>li {
