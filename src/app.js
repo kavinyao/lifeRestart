@@ -406,12 +406,12 @@ class App{
                 const { age, content, isEnd } = trajectory;
                 const li = $(`<li><span>${age}岁：</span><span>${
                     content.map(
-                        ({type, description, grade, name, postEvent}) => {
+                        ({type, description, grade, name, eventId, postEvent}) => {
                             switch(type) {
                                 case 'TLT':
                                     return `天赋【${name}】发动：${description}`;
                                 case 'EVT':
-                                    return description + (postEvent?`<br>${postEvent}`:'');
+                                    return `<code>[${eventId}]</code> ` + description + (postEvent?`<br>${postEvent}`:'');
                             }
                         }
                     ).join('<br>')

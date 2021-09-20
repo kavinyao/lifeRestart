@@ -112,6 +112,7 @@ class Life {
         this.#property.effect(effect);
         const content = {
             type: this.#property.TYPES.EVT,
+            eventId,
             description,
             postEvent,
         }
